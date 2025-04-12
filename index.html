@@ -12,25 +12,21 @@
             <h1>Блог</h1>
         </header>
 
-        <div class="new-post-form">
+        <form class="post-form">
             <h2>Создать новый пост</h2>
-            <form id="postForm">
-                <input type="text" id="postTitle" placeholder="Заголовок поста" required>
-                <textarea id="postContent" placeholder="Напишите ваш пост здесь..." required></textarea>
-                <button type="submit">Опубликовать пост</button>
-            </form>
-        </div>
+            <input type="text" placeholder="Заголовок поста" required>
+            <textarea placeholder="Напишите ваш пост здесь..." required></textarea>
+            <button type="submit">Опубликовать пост</button>
+        </form>
 
-        <div id="posts" class="posts-container">
+        <div class="posts">ы
         </div>
     </div>
 
     <template id="post-template">
         <article class="post">
             <h2 class="post-title"></h2>
-            <div class="post-meta">
-                <span class="post-date"></span>
-            </div>
+            <div class="post-meta"></div>
             <div class="post-content"></div>
             <div class="comments-section">
                 <h3>Комментарии</h3>
@@ -45,8 +41,8 @@
 
     <template id="comment-template">
         <div class="comment">
-            <p class="comment-content"></p>
-            <span class="comment-date"></span>
+            <div class="comment-meta"></div>
+            <div class="comment-content"></div>
         </div>
     </template>
 
