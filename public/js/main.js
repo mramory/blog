@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
 });
 
+const API_URL = 'https://jsonplaceholder.typicode.com';
+
 function setupEventListeners() {
     document.getElementById('postForm').addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -10,18 +12,27 @@ function setupEventListeners() {
         const content = document.getElementById('postContent').value;
 
         try {
-            const response = await fetch('/api/posts', {
+            const response = await fetch(`${API_URL}/posts`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title, content })
+                body: JSON.stringify({ 
+                    title,
+                    body: content,
+                    userId: 1
+                })
             });
 
             if (!response.ok) throw new Error('Failed to create post');
 
             const post = await response.json();
-            addPostToDOM(post);
+            addPostToDOM({
+                id: post.id,
+                title: post.title,
+                content: post.body,
+                created_at: new Date().toISOString()
+            });
             e.target.reset();
         } catch (error) {
             console.error('Error creating post:', error);
@@ -32,14 +43,19 @@ function setupEventListeners() {
 
 async function loadPosts() {
     try {
-        const response = await fetch('/api/posts');
+        const response = await fetch(`${API_URL}/posts?_limit=10&_sort=id&_order=desc`);
         if (!response.ok) throw new Error('Failed to load posts');
 
         const posts = await response.json();
         const postsContainer = document.getElementById('posts');
         postsContainer.innerHTML = '';
         
-        posts.forEach(post => addPostToDOM(post));
+        posts.forEach(post => addPostToDOM({
+            id: post.id,
+            title: post.title,
+            content: post.body,
+            created_at: new Date().toISOString()
+        }));
     } catch (error) {
         console.error('Error loading posts:', error);
         alert('Failed to load posts. Please refresh the page.');
