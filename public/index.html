@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Блог</h1>
+        </header>
+
+        <div class="new-post-form">
+            <h2>Создать новый пост</h2>
+            <form id="postForm">
+                <input type="text" id="postTitle" placeholder="Заголовок поста" required>
+                <textarea id="postContent" placeholder="Напишите ваш пост здесь..." required></textarea>
+                <button type="submit">Опубликовать пост</button>
+            </form>
+        </div>
+
+        <div id="posts" class="posts-container">
+        </div>
+    </div>
+
+    <template id="post-template">
+        <article class="post">
+            <h2 class="post-title"></h2>
+            <div class="post-meta">
+                <span class="post-date"></span>
+            </div>
+            <div class="post-content"></div>
+            <div class="comments-section">
+                <h3>Комментарии</h3>
+                <div class="comments-list"></div>
+                <form class="comment-form">
+                    <textarea placeholder="Напишите ваш комментарий здесь..." required></textarea>
+                    <button type="submit">Добавить комментарий</button>
+                </form>
+            </div>
+        </article>
+    </template>
+
+    <template id="comment-template">
+        <div class="comment">
+            <p class="comment-content"></p>
+            <span class="comment-date"></span>
+        </div>
+    </template>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 
